@@ -1,0 +1,30 @@
+{
+  "name": "click-fix-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/click-fix-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/click-fix-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "click-fix:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "click-fix:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "click-fix:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "implicitDependencies": ["click-fix"],
+  "tags": []
+}
